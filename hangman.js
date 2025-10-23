@@ -4,6 +4,10 @@ var MAX_GUESSES = 6;
 var word = "";
 var guesses=""; //variable storing the guesses letters
 var guess_count = MAX_GUESSES;
+var start = false;
+var inputBox = document.getElementById("guess");
+var guessButton = document.getElementById("guessButton");
+
 
 // start new games 
 // Write out the spaces for the letters using for loop
@@ -14,6 +18,7 @@ var guess_count = MAX_GUESSES;
 //Update the screen to update pic/_ string
 
 function newGame(){
+    start = true;
     var randomIndex = parseInt(Math.random() * POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
     guesses="";
@@ -26,14 +31,22 @@ function newGame(){
 
 function guessLetter(){
     //Do stuff
+    if (start == false){
+        inputBox.disabled = true;
+        guessButton.disabled = true;
+    }
     var input = document.getElementById("guess");
     var letter = input.value;
     if (word.indexOf(letter) < 0){
         guess_count --;
     }
+    // if (guesses.indexOf(letter) < 0){
+    //     guesses += letter;
+    //     updatePage();
+    // }
     guesses += letter;
     updatePage();
-
+    input.value = "";
 }
 
 function updatePage(){
@@ -60,3 +73,10 @@ function updatePage(){
     image.src= "images/hangman" + guess_count + ".gif";
 
 }
+
+//commite each individual feature and then work on next feature
+//dont let same guess to happen, just ignore it
+//show that you won, or loss, -> it says so and stop guess after we win/loss doesnt take input anymore
+//when guesscount is 0, say you lost
+//when there are no _ left, say you won
+//dotn allow guess before we press new game
