@@ -37,15 +37,13 @@ function guessLetter(){
     }
     var input = document.getElementById("guess");
     var letter = input.value;
-    if (word.indexOf(letter) < 0){
-        guess_count --;
+    if (guesses.indexOf(letter) < 0){
+        guesses += letter;
+        if (word.indexOf(letter) < 0){
+            guess_count --;
+        }
+        updatePage();
     }
-    // if (guesses.indexOf(letter) < 0){
-    //     guesses += letter;
-    //     updatePage();
-    // }
-    guesses += letter;
-    updatePage();
     input.value = "";
 }
 
@@ -79,4 +77,3 @@ function updatePage(){
 //show that you won, or loss, -> it says so and stop guess after we win/loss doesnt take input anymore
 //when guesscount is 0, say you lost
 //when there are no _ left, say you won
-//dotn allow guess before we press new game
