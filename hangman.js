@@ -4,10 +4,11 @@ var MAX_GUESSES = 6;
 var word = "";
 var guesses=""; //variable storing the guesses letters
 var guess_count = MAX_GUESSES;
-var start = false;
+
 var inputBox = document.getElementById("guess");
 var guessButton = document.getElementById("guessButton");
-
+inputBox.disabled = false;
+guessButton.disabled = false;
 
 // start new games 
 // Write out the spaces for the letters using for loop
@@ -18,7 +19,12 @@ var guessButton = document.getElementById("guessButton");
 //Update the screen to update pic/_ string
 
 function newGame(){
-    start = true;
+    var inputBox = document.getElementById("guess");
+    var guessButton = document.getElementById("guessButton");
+
+    inputBox.disabled = false;
+    guessButton.disabled = false;
+
     var randomIndex = parseInt(Math.random() * POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
     guesses="";
@@ -31,10 +37,6 @@ function newGame(){
 
 function guessLetter(){
     //Do stuff
-    if (start == false){
-        inputBox.disabled = true;
-        guessButton.disabled = true;
-    }
     var input = document.getElementById("guess");
     var letter = input.value;
     if (guesses.indexOf(letter) < 0){
