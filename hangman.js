@@ -50,6 +50,9 @@ function guessLetter(){
 }
 
 function updatePage(){
+    var inputBox = document.getElementById("guess");
+    var guessButton = document.getElementById("guessButton");
+
     var clueString = "";
     for (var i = 0; i < word.length; i++){
         var currentLetter = word.charAt(i);
@@ -71,6 +74,17 @@ function updatePage(){
     //update the image 
     var image = document.getElementById("hangmanImage");
     image.src= "images/hangman" + guess_count + ".gif";
+
+    if (guess_count <= 0){
+        guessArea.innerHTML = "You lost! The word was: " + word;
+        inputBox.disabled = true;
+        guessButton.disabled = true;
+    }
+    else if (clueString.indexOf("_") < 0){
+        guessArea.innerHTML = "Congratulations! You won";
+        inputBox.disabled = true;
+        guessButton.disabled = true;
+    }
 
 }
 
