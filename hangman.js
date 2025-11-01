@@ -7,16 +7,9 @@ var guess_count = MAX_GUESSES;
 
 var inputBox = document.getElementById("guess");
 var guessButton = document.getElementById("guessButton");
+
 inputBox.disabled = false;
 guessButton.disabled = false;
-
-// start new games 
-// Write out the spaces for the letters using for loop
-// display the string of _ in html
-//guess a letter
-//evaluate the string, press the button
-//add to guesses screen
-//Update the screen to update pic/_ string
 
 function newGame(){
     var inputBox = document.getElementById("guess");
@@ -32,7 +25,6 @@ function newGame(){
     updatePage();
     var textInput = document.getElementById("guess");
     textInput.value = "";
-    
 }
 
 function guessLetter(){
@@ -63,33 +55,30 @@ function updatePage(){
             clueString += "_ ";
         } 
     }
-    //update the clue string
+
+    // update the clue string
     var clue = document.getElementById("clue");
     clue.innerHTML = clueString;
 
-    //update the guesses from the user
+    // update the guesses from the user
     var guessArea = document.getElementById("guesses");
     guessArea.innerHTML = "Guessed Letters: " + guesses;
 
-    //update the image 
+    // update the image 
     var image = document.getElementById("hangmanImage");
     image.src= "images/hangman" + guess_count + ".gif";
 
     if (guess_count <= 0){
+        // guess is replaced with the losing message along with the intial word - once the user has run out of guesses
         guessArea.innerHTML = "You lost! The word was: " + word;
         inputBox.disabled = true;
         guessButton.disabled = true;
     }
     else if (clueString.indexOf("_") < 0){
+        // guessArea is replaced with the winning message once the user has guessed all letters
         guessArea.innerHTML = "Congratulations! You won";
         inputBox.disabled = true;
         guessButton.disabled = true;
     }
-
+    
 }
-
-//commite each individual feature and then work on next feature
-//dont let same guess to happen, just ignore it
-//show that you won, or loss, -> it says so and stop guess after we win/loss doesnt take input anymore
-//when guesscount is 0, say you lost
-//when there are no _ left, say you won
